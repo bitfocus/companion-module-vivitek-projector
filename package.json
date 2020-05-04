@@ -1,0 +1,19 @@
+{
+	"name": "vivitek-proj",
+	"version": "1.0.0",
+	"api_version": "1.0.0",
+	"keywords": [
+		"Projector",
+		"Protocol"
+	],
+	"manufacturer": "Vivitek",
+	"product": "Projector",
+	"shortname": "vivitek-proj",
+	"description": "Vivitek projector plugin for Companion. Compatable with most Vivitek projectors that support ethernet control via port 7000",
+	"main": "Vivitek.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Todd Murphy <murphytodd4@gmail.com>",
+	"license": "MIT"
+}
