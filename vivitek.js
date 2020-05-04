@@ -1,4 +1,4 @@
-var net = require('net');
+var tcp = require('../../tcp');
 var instance_skel = require('../../instance_skel');
 var debug;
 var log;
@@ -18,6 +18,7 @@ instance.prototype.updateConfig = function(config) {
 	var self = this;
 
 	self.config = config;
+
 	self.init_tcp();
 };
 
@@ -29,12 +30,16 @@ instance.prototype.init = function() {
 
 	self.status(self.STATUS_UNKNOWN, 'Connecting');
 
+
+	self.init_tcp();
 	// Initial connect to check status
 	self.send('op status ?');
 };
 
-instance.prototype.init_tcp = function(cb) {
+instance.prototype.init_tcp = function () {
 	var self = this;
+
+	// var connected = false;
 
 	if (self.socket !== undefined) {
 		self.socket.destroy();
@@ -42,47 +47,34 @@ instance.prototype.init_tcp = function(cb) {
 	}
 
 	if (self.config.host) {
-		self.connecting = true;
-		self.socket = new net.Socket();
-		self.socket.setNoDelay(true);
+		self.socket = new tcp(self.config.host, 7000);
+
+		self.socket.on('status_change', function (status, message) {
+			self.status(status, message);
+		});
 
 		self.socket.on('error', function (err) {
-			debug("Network error", err);
+			self.log('debug', "Network error", err);
 			self.status(self.STATE_ERROR, err);
-			self.log('error',"Network error: " + err.message);
-			self.connected = false;
-			self.connecting = false;
-			delete self.socket;
+			self.log('error', "Network error: " + err.message);
 		});
 
 		self.socket.on('connect', function () {
-			if (self.currentStatus != self.STATUS_OK) {
-				self.status(self.STATUS_OK, 'Connected');
-			}
-
-			self.connected = true;
-		})
-
-		self.socket.on('end', function () {
-			self.connected = false;
-			self.connecting = false;
+			self.status(self.STATE_OK);
+			self.log('debug', "Connected");
 		});
-
-		self.socket.connect(7000, self.config.host);
 	}
 };
 
 instance.prototype.send = function(cmd) {
 	var self = this;
 
-	if (self.connecting) {
-		self.socket.write(cmd + "\r");
+	if (self.socket !== undefined && self.socket.connected) {
+		self.socket.send(cmd+"\r");
 		self.log('debug',"Cmd Sent: " + cmd);
-	} else {
-		self.init_tcp(function () {
-			self.socket.write(cmd + "\r");
-			self.log('debug',"Cmd Sent: " + cmd);
-		});
+	}
+	else {
+		self.log('debug', 'Socket not connected :(');
 	}
 };
 
