@@ -8,7 +8,7 @@
 	],
 	"manufacturer": "Vivitek",
 	"product": "Projector",
-	"shortname": "vivitek projector",
+	"shortname": "vivitek",
 	"description": "Vivitek projector plugin for Companion. Compatable with most Vivitek projectors that support ethernet control via port 7000",
 	"main": "vivitek.js",
 	"scripts": {
