@@ -132,11 +132,13 @@ instance.prototype.action = function(action) {
 			break;
 
 		case 'shutterOpen':
-			cmd = 'op shutter -';
+			//Some projectors require the shutter command and some use blank
+			cmd = 'op shutter -\rop blank 0';
 			break;
 
 		case 'shutterClose':
-			cmd = 'op shutter +';
+			//Some projectors require the shutter command and some use blank
+			cmd = 'op shutter +\rop blank 1';
 			break;
 
 	}
