@@ -15,5 +15,13 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "Todd Murphy <murphytodd4@gmail.com>",
-	"license": "MIT"
+	"license": "MIT",
+	"homepage": "https://github.com/bitfocus/companion-module-vivitek-projector#readme",
+	"bugs": {
+		"url": "https://github.com/bitfocus/companion-module-vivitek-projector/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bitfocus/companion-module-vivitek-projector.git"
+	}
 }
