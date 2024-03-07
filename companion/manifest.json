@@ -1,0 +1,31 @@
+{
+	"id": "vivitek-projector",
+	"name": "vivitek-projector",
+	"shortname": "vivitek",
+	"description": "Vivitek projector plugin for Companion. Compatable with most Vivitek projectors that support ethernet control via port 7000",
+	"version": "0.0.0",
+	"license": "MIT",
+	"repository": "git+https://github.com/bitfocus/companion-module-vivitek-projector.git",
+	"bugs": "https://github.com/bitfocus/companion-module-vivitek-projector/issues",
+	"maintainers": [
+		{
+			"name": "Todd Murphy",
+			"email": "murphytodd4@gmail.com"
+		}
+	],
+	"legacyIds": [],
+	"runtime": {
+		"type": "node18",
+		"api": "nodejs-ipc",
+		"apiVersion": "0.0.0",
+		"entrypoint": "../vivitek.js"
+	},
+	"manufacturer": "Vivitek",
+	"products": [
+		"Projector"
+	],
+	"keywords": [
+		"Projector",
+		"Protocol"
+	]
+}
