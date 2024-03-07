@@ -93,6 +93,24 @@ class vivitekInstance extends InstanceBase {
 				this.send(cmd);
 			}
 		}
+
+		actions['blankOn'] = {
+			name: 'Blank On',
+			options: [],
+			callback: (action) => {
+				let cmd = 'op blank 1';
+				this.send(cmd);
+			}
+		}
+
+		actions['blankOff'] = {
+			name: 'Blank Off',
+			options: [],
+			callback: (action) => {
+				let cmd = 'op blank 0';
+				this.send(cmd);
+			}
+		}
 	
 		this.setActionDefinitions(actions);
 	}
